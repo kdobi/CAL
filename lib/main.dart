@@ -1,7 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:calorie_calculation/take_picture.dart';
 
-void main() => runApp(MyApp());
+import 'firebase_options.dart';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_ai/firebase_ai.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Firebase 초기화 / 반드시 메인에서 할 것 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // 익명 로그인 (Firebase AI Logic 사용에 필요)
+  await FirebaseAuth.instance.signInAnonymously();
+
+  // Gemini 모델 생성
+  final model = FirebaseAI.googleAI().generativeModel(
+    model: 'gemini-2.5-flash',
+  );
+
+  // 프롬프트
+  final response = await model.generateContent([
+    Content.text('Write a story about a magic backpack.')
+  ]);
+
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

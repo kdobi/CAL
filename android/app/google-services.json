@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "94473476184",
+    "project_id": "kcal-a6664",
+    "storage_bucket": "kcal-a6664.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94473476184:android:776b17f3cd3da8a5f5922d",
+        "android_client_info": {
+          "package_name": "com.example.calorie_calculation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn_46hfxzb9SXsET4pnCdN1-_jI_sis1A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
