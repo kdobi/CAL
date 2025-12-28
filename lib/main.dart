@@ -16,17 +16,7 @@ Future<void> main() async {
   );
 
   // 익명 로그인 (Firebase AI Logic 사용에 필요)
-  await FirebaseAuth.instance.signInAnonymously();
-
-  // Gemini 모델 생성
-  final model = FirebaseAI.googleAI().generativeModel(
-    model: 'gemini-2.5-flash',
-  );
-
-  // 프롬프트
-  final response = await model.generateContent([
-    Content.text('Write a story about a magic backpack.')
-  ]);
+  // await FirebaseAuth.instance.signInAnonymously();
 
   runApp(const MyApp());
 }
