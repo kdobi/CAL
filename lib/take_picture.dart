@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:calorie_calculation/kcal.dart';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -72,6 +73,11 @@ class _TakePictureState extends State<TakePicture> {
       if (!mounted) return; // 사용자가 화면을 나갔을 때 크래시 방지
       setState(() {
         _analysisResult = result;
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => Kcal(analysisResult : result, imagePath : _image!.path)),
+        );
       });
     } catch (e) {
       if (!mounted) return;
@@ -139,45 +145,7 @@ class _TakePictureState extends State<TakePicture> {
 
           const SizedBox(height: 16),
 
-          // ✅ 결과 표시 영역
-          Expanded(
-            child: SingleChildScrollView(
-              // expand와 세트, 세로 최대 영역 차지
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (_image != null)
-                    Center(
-                      child: ClipRRect(
-                        // 모서리 둥글게
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.file(
-                          File(_image!.path),
-                          height: 220,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    )
-                  else
-                    const Center(
-                      child: SizedBox(
-                        height: 220,
-                        child: Center(child: Text('사진을 선택하세요')),
-                      ),
-                    ),
 
-                  const SizedBox(height: 16),
-                  const Text(
-                    '분석 결과',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(_analysisResult, style: const TextStyle(fontSize: 14)),
-                ],
-              ),
-            ),
-          ),
         ],
       ),
     );

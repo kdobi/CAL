@@ -30,10 +30,8 @@ class FirebaseInit {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Firebase 초기화 / 반드시 메인에서 할 것 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // Firebase 초기화 / 반드시 메인에서 할 것
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // 익명 로그인 (Firebase AI Logic 사용에 필요)
   // await FirebaseAuth.instance.signInAnonymously();
