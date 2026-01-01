@@ -52,6 +52,7 @@ class _TakePictureState extends State<TakePicture> {
   final ImagePicker picker = ImagePicker();
 
   XFile? _image;
+
   String _analysisResult = '이미지를 선택하면 자동으로 분석됩니다.';
   bool _loading = false;
 
@@ -76,7 +77,10 @@ class _TakePictureState extends State<TakePicture> {
 
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => Kcal(analysisResult : result, imagePath : _image!.path)),
+          MaterialPageRoute(
+            builder: (_) =>
+                Kcal(analysisResult: result, imagePath: _image!.path),
+          ),
         );
       });
     } catch (e) {
@@ -119,33 +123,86 @@ class _TakePictureState extends State<TakePicture> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('음식 사진 분석')),
+      appBar: AppBar(
+        title: const Text('음식 사진 분석'),
+        backgroundColor: Colors.blue[200],
+      ),
+
       body: Column(
         children: [
-          const SizedBox(height: 20),
+          Padding(
+            padding: EdgeInsetsGeometry.only(top: 70, bottom: 110),
+            child: !_loading
+                // 이미지가 등록되지 않았을때 메인화면
+                ? SizedBox(
+                    height: 300,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.photo_size_select_actual_rounded,
+                          size: 48,
+                          color: Colors.grey[700],
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          '사진을 등록해주세요',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey[900],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                // 이미지 등록됐을 때 메인화면
+                : Image.file(
+                    File(_image!.path),
+                    width: MediaQuery.of(context).size.width - 60,
+                    fit: BoxFit.cover,
+                  ),
+          ),
 
+          SizedBox(
+            height: 2,
+            child: Stack(
+              children: [
+                Container(color: Colors.grey[300]),
+                if (_loading) const LinearProgressIndicator(minHeight: 2),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 30),
           // ✅ 카메라/갤러리 버튼 영역
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                onPressed: _loading ? null : getGalleryImage, // 로딩중 버튼 비활성화
-                child: const Text('gallery'),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: _loading ? null : getGalleryImage, // 로딩중 버튼 비활성화
+                    child: Icon(
+                      Icons.picture_in_picture_alt_rounded,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text('사진첩'),
+                ],
               ),
-              const SizedBox(width: 30),
-              ElevatedButton(
-                onPressed: _loading ? null : getCameraImage, // 로딩중 버튼 비활성화
-                child: const Text('camera'),
+              const SizedBox(width: 80),
+
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: _loading ? null : getCameraImage, // 로딩중 버튼 비활성화
+                    child: Icon(Icons.camera_alt, color: Colors.black),
+                  ),
+                  Text('카메라'),
+                ],
               ),
             ],
           ),
-
-          const SizedBox(height: 16),
-          if (_loading) const LinearProgressIndicator(), // 비동기 로딩
-
-          const SizedBox(height: 16),
-
-
         ],
       ),
     );
