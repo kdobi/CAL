@@ -230,10 +230,13 @@ class _TakePictureState extends State<TakePicture> {
                     ),
                   )
                 // ✅ 분석(로딩) 중일 때 이미지 보여주기
-                : Image.file(
-                    File(_image!.path),
-                    width: MediaQuery.of(context).size.width - 60,
-                    fit: BoxFit.cover,
+                : ClipRRect(
+                    borderRadius: BorderRadiusGeometry.circular(12),
+                    child: Image.file(
+                      File(_image!.path),
+                      width: MediaQuery.of(context).size.width - 30,
+                      fit: BoxFit.cover,
+                    ),
                   ),
           ),
 
@@ -281,17 +284,3 @@ class _TakePictureState extends State<TakePicture> {
     );
   }
 }
-
-/* take_picture 실행순서
-
-1. 사용자가 분석하고 싶은 사진 선택 -> onpressed를 통해 'get__Image' 함수 실행.
-2. imagePicker을 통해 이미지를 받아오고, 이미지 전역변수에 이미지 담은 후, _analyzeSelectedImage()로 image를 보냄 
-3. analyzeSelectedImage()에서 resultText를 받기 위해 .analyzeImage() 함수 호출후 gemini 답변 받아옴
-4. analyzeSelectedImage()에서 gemini TMI 제거를 위해 extractJsonObject 호출 후 resultText 전달, jsonOnly에 저장
-5. analyzeSelectedImage()에서 jsonDecode 함수로 gemini에서 받아온 스트링 json을 Map으로 변환.
-6. analyzeSelectedImage()에서 NutritionResult.fromJson()에 map을 담아서 전달.
-7. NutritionResult.fromJson()에서 Type 안정화
-8.
-
-
-*/

@@ -1,9 +1,8 @@
 # 💬 Flutter 음식 칼로리 계산 어플
 
-> Flutter로 음식 칼로리 계산 앱을 구현한 프로젝트입니다.
+> Flutter와 Firebase에서 제공하는 제미나이 API를 활용하여 음식 칼로리 계산 앱을 구현한 프로젝트입니다.
 
- 2025.12.22 (프로젝트 종료)
-- 상태: 진행중
+ 2025.12.22 ~ 2026. 1.5일 (프로젝트 종료)
 
 ---
 
@@ -25,9 +24,7 @@
 
 ## ✨ 주요 기능
 - 음식 검색/선택 후 칼로리 확인
-- 섭취량(단위/수량) 입력에 따른 칼로리 및 영양소 계산
-
----
+- 섭취량(단위/수량) 입력에 따른 칼로리 및 영양소 계산 및 주의사항
 
 ## 🏃 에러사항 및 수정사항
 
@@ -52,3 +49,26 @@
 	•	ci: CI 설정 파일 수정
 
 ## 결과화면
+
+<table>
+  <tr>
+    <td align="center">
+      <b>① 음식 사진 분석 (등록 전)</b><br/>
+      <img src="images/pictureBefore.jpeg" width="300"/>
+    </td>
+    <td align="center">
+      <b>② 음식 사진 분석 (사진 등록 후)</b><br/>
+      <img src="images/pictureAfter.jpeg" width="300"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>③ 사진첩 선택 화면</b><br/>
+      <img src="images/pictureContainer.jpeg" width="300"/>
+    </td>
+    <td align="center">
+      <b>④ 분석 결과 화면</b><br/>
+      <img src="images/kcalResult.jpeg" width="300"/>
+    </td>
+  </tr>
+</table>
