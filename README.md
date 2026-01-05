@@ -54,21 +54,21 @@
   <tr>
     <td align="center">
       <b>① 음식 사진 분석 (등록 전)</b><br/>
-      <img src="images/pictureBefore.jpeg" width="300"/>
+      <img src="images/pictureBefore.png" width="300"/>
     </td>
     <td align="center">
       <b>② 음식 사진 분석 (사진 등록 후)</b><br/>
-      <img src="images/pictureAfter.jpeg" width="300"/>
+      <img src="images/pictureAfter.png" width="300"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>③ 사진첩 선택 화면</b><br/>
-      <img src="images/pictureContainer.jpeg" width="300"/>
+      <img src="images/pictureContainer.png" width="300"/>
     </td>
     <td align="center">
       <b>④ 분석 결과 화면</b><br/>
-      <img src="images/kcalResult.jpeg" width="300"/>
+      <img src="images/kcalResult.png" width="300"/>
     </td>
   </tr>
 </table>
